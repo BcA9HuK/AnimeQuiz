@@ -194,7 +194,7 @@ const currentTest = {
         progressBar.addEventListener('mousemove', (e) => {
             const rect = progressBar.getBoundingClientRect();
             const percent = (e.clientX - rect.left) / rect.width;
-            progressBar.title = formatTime(percent * audio.duration);
+            progressBar.title = this.formatTime(percent * audio.duration);
         });
     },
 
