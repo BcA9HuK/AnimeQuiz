@@ -1,0 +1,377 @@
+/* Общие стили */
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #f9f9f9; 
+    padding-bottom: 100px; 
+}
+
+.container { 
+    padding: 10px; 
+    max-width: 480px; 
+    margin: 0 auto; 
+    padding-bottom: 80px; 
+}
+
+/* Шапка */
+.header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 20px; 
+    background: linear-gradient(to right, #ffcdd2 0%, #fff9c4 100%);
+    color: #000000; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+.header .title { 
+    font-size: 1.2em; 
+    /* color: white; */
+}
+
+.header .points {
+    /* color: white; */
+}
+
+/* Главная страница */
+.content { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+.section { 
+    width: 100%; 
+    background: white; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    overflow: hidden; 
+    cursor: pointer; 
+    transition: transform 0.2s; 
+}
+
+.section:hover {
+    transform: translateY(-2px);
+}
+
+.section img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    display: block; 
+}
+
+.section .caption { 
+    text-align: center; 
+    padding: 15px; 
+    font-weight: 500; 
+}
+
+/* Нижняя навигация */
+.footer { 
+    position: fixed; 
+    bottom: 30px; 
+    left: 0; 
+    right: 0; 
+    display: flex; 
+    justify-content: space-around; 
+    background: white; 
+    padding: 10px 0; 
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); 
+}
+
+.footer .icon { 
+    text-align: center; 
+    cursor: pointer; 
+    transition: opacity 0.2s; 
+}
+
+.footer .icon:hover {
+    opacity: 0.8; 
+}
+
+.footer .icon img { 
+    width: 24px; 
+    height: 24px; 
+}
+
+/* Рекламный баннер */
+.ad-banner { 
+    height: 30px; 
+    position: fixed; 
+    bottom: 0; 
+    width: 100%; 
+    background-color: #ccc; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 5; 
+}
+
+/* Стили для тестов */
+.question-container {
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s;
+}
+
+.quiz-title {
+    font-size: 24px;
+    text-align: center;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.question-counter {
+    text-align: right;
+    color: #666;
+    margin: 10px 0;
+}
+
+/* Изображения в тестах */
+.question-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px 0;
+    display: block;
+}
+
+/* Аудио в тестах */
+.audio-container {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.question-audio {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Кнопки ответов */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.option-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #5D8A38 0%, #1D9FFC 100%);
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.option-button:hover:not([disabled]) {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.option-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+    filter: grayscale(30%);
+}
+
+/* Результаты */
+.results {
+    text-align: center;
+    padding: 20px;
+}
+
+.results p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.results-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.results-buttons .option-button {
+    margin: 0;  /* Убираем margin, так как используем gap */
+    background: linear-gradient(90deg, #5D8A38 0%, #1D9FFC 100%);
+}
+
+.results-buttons .option-button:hover {
+    filter: brightness(1.1);
+}
+
+/* Опционально: другой цвет для кнопок результатов */
+.results-buttons .option-button {
+    background-color: #2196F3;  /* Синий цвет для разнообразия */
+}
+
+.results-buttons .option-button:hover {
+    background-color: #1976D2;
+}
+
+/* Сообщения об ошибках */
+.error-message {
+    color: #ff0000;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .quiz-title {
+        font-size: 20px;
+    }
+    
+    .option-button {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+.custom-audio-player {
+    background: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.play-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(90deg, #5D8A38 0%, #1D9FFC 100%);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: height 0.2s;
+}
+
+.progress-bar:hover {
+    height: 8px; /* Немного увеличиваем при наведении */
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #5D8A38 0%, #1D9FFC 100%);
+    width: 0;
+    transition: width 0.1s linear;
+}
+
+/* Добавляем подсветку при наведении */
+.progress-bar:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.time {
+    font-size: 14px;
+    color: #666;
+    min-width: 45px;
+}
+
+.question-audio {
+    display: none;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.volume-slider {
+    width: 60px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: #eee;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #5D8A38;
+    cursor: pointer;
+}
+
+.volume-control i {
+    color: #666;
+    font-size: 14px;
+}
+
+.audio-message {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+    /* Анимация появления */
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
