@@ -18,14 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }, true);
 
     // Обработка ошибок
-    window.onerror = function(msg, url, lineNo, columnNo, error) {
+    window.addEventListener('error', function(event) {
+        // Игнорируем ошибки без информации
+        if (!event.message || event.message === 'Script error.') {
+            return;
+        }
+        
         console.error('Ошибка:', {
-            message: msg,
-            url: url,
-            line: lineNo,
-            column: columnNo,
-            error: error
+            message: event.message,
+            url: event.filename,
+            line: event.lineno,
+            column: event.colno,
+            error: event.error
         });
-        return false;
-    };
+    });
 });
