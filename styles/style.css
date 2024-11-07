@@ -27,11 +27,11 @@ body {
 
 .header .title { 
     font-size: 1.2em; 
-    /* color: white; */
+    color: rgb(0, 0, 0); 
 }
 
 .header .points {
-    /* color: white; */
+    color: #000000;
 }
 
 /* Главная страница */
@@ -85,6 +85,8 @@ body {
     text-align: center; 
     cursor: pointer; 
     transition: opacity 0.2s; 
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .footer .icon:hover {
@@ -343,6 +345,7 @@ body {
     width: 60px;
     height: 4px;
     -webkit-appearance: none;
+    appearance: none;
     background: #eee;
     border-radius: 2px;
     cursor: pointer;
@@ -374,4 +377,54 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+.profile-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.profile-info {
+    flex: 1;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.settings-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.social-links i {
+    font-size: 24px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.achievements {
+    margin-top: 20px;
+}
+
+.achievement-icons img {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
 }

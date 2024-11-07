@@ -7,6 +7,9 @@ const QuizCommon = {
     goToHome() {
         window.location.href = '../index.html';
     },
+    goProfile() {
+        window.location.href = '../pages/profile.html';
+    },
 
     // Перезапуск теста
     restartQuiz() {
