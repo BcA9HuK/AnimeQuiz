@@ -20,7 +20,11 @@ body {
     justify-content: space-between; 
     align-items: center; 
     padding: 15px 20px; 
-    background: linear-gradient(to right, #ffcdd2 0%, #fff9c4 100%);
+    background: linear-gradient(90deg, 
+        rgba(255, 7, 7, 0.2) 0%, 
+        rgba(16, 228, 186, 0.2) 46%, 
+        rgba(222, 238, 0, 0.2) 100%
+    );
     color: #000000; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
 }
