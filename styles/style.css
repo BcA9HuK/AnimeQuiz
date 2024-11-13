@@ -7,7 +7,32 @@ body {
     padding-bottom: 100px; 
     color: var(--text-color);
 }
+/* Добавляем переменные для цветов */
+:root {
+    --background-color: #f9f9f9;
+    --text-color: #000000;
+    --card-background: #ffffff;
+    --header-gradient: linear-gradient(90deg, 
+        rgba(255, 7, 7, 0.2) 0%, 
+        rgba(16, 228, 186, 0.2) 46%, 
+        rgba(222, 238, 0, 0.2) 100%);
+    --shadow-color: rgba(0,0,0,0.1);
+    --footer-background: #ffffff;
+    --ad-banner-background: #cccccc;
+}
 
+[data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-background: #2d2d2d;
+    --header-gradient: linear-gradient(90deg, 
+        rgba(255, 7, 7, 0.4) 0%, 
+        rgba(16, 228, 186, 0.4) 46%, 
+        rgba(222, 238, 0, 0.4) 100%);
+    --shadow-color: rgba(0,0,0,0.3);
+    --footer-background: #2d2d2d;
+    --ad-banner-background: #333333;
+}
 .container { 
     padding: 10px; 
     max-width: 480px; 
@@ -21,14 +46,24 @@ body {
     justify-content: space-between; 
     align-items: center; 
     padding: 15px 20px; 
-    background: var(--header-gradient);
+    background: var(--header-gradient),
+                var(--card-background);
     color: var(--text-color); 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    backdrop-filter: blur(10px);
 }
 
 .header .title { 
     font-size: 1.2em; 
     color: var(--text-color); 
+}
+.header .title_settings { 
+    font-size: 1.2em; 
+    color: var(--text-color); 
+    text-align: center;
 }
 
 .header .points {
@@ -445,33 +480,6 @@ body {
     margin: 10px auto;
     display: block;
     filter: brightness(0%); /* Делаем изображение чёрным */
-}
-
-/* Добавляем переменные для цветов */
-:root {
-    --background-color: #f9f9f9;
-    --text-color: #000000;
-    --card-background: #ffffff;
-    --header-gradient: linear-gradient(90deg, 
-        rgba(255, 7, 7, 0.2) 0%, 
-        rgba(16, 228, 186, 0.2) 46%, 
-        rgba(222, 238, 0, 0.2) 100%);
-    --shadow-color: rgba(0,0,0,0.1);
-    --footer-background: #ffffff;
-    --ad-banner-background: #cccccc;
-}
-
-[data-theme="dark"] {
-    --background-color: #1a1a1a;
-    --text-color: #ffffff;
-    --card-background: #2d2d2d;
-    --header-gradient: linear-gradient(90deg, 
-        rgba(255, 7, 7, 0.4) 0%, 
-        rgba(16, 228, 186, 0.4) 46%, 
-        rgba(222, 238, 0, 0.4) 100%);
-    --shadow-color: rgba(0,0,0,0.3);
-    --footer-background: #2d2d2d;
-    --ad-banner-background: #333333;
 }
 
 /* Стили для страницы настроек */
