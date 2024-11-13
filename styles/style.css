@@ -3,8 +3,9 @@ body {
     font-family: Arial, sans-serif; 
     margin: 0; 
     padding: 0; 
-    background-color: #f9f9f9; 
+    background-color: var(--background-color); 
     padding-bottom: 100px; 
+    color: var(--text-color);
 }
 
 .container { 
@@ -20,22 +21,18 @@ body {
     justify-content: space-between; 
     align-items: center; 
     padding: 15px 20px; 
-    background: linear-gradient(90deg, 
-        rgba(255, 7, 7, 0.2) 0%, 
-        rgba(16, 228, 186, 0.2) 46%, 
-        rgba(222, 238, 0, 0.2) 100%
-    );
-    color: #000000; 
+    background: var(--header-gradient);
+    color: var(--text-color); 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
 }
 
 .header .title { 
     font-size: 1.2em; 
-    color: rgb(0, 0, 0); 
+    color: var(--text-color); 
 }
 
 .header .points {
-    color: #000000;
+    color: var(--text-color);
 }
 
 /* Главная страница */
@@ -47,9 +44,9 @@ body {
 
 .section { 
     width: 100%; 
-    background: white; 
+    background: var(--card-background); 
     border-radius: 10px; 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    box-shadow: 0 2px 8px var(--shadow-color); 
     overflow: hidden; 
     cursor: pointer; 
     transition: transform 0.2s; 
@@ -80,9 +77,9 @@ body {
     right: 0; 
     display: flex; 
     justify-content: space-around; 
-    background: white; 
+    background: var(--footer-background); 
     padding: 10px 0; 
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); 
+    box-shadow: 0 -2px 5px var(--shadow-color); 
 }
 
 .footer .icon { 
@@ -108,19 +105,20 @@ body {
     position: fixed; 
     bottom: 0; 
     width: 100%; 
-    background-color: #ccc; 
+    background-color: var(--ad-banner-background); 
     display: flex; 
     align-items: center; 
     justify-content: center; 
     z-index: 5; 
+    color: var(--text-color);
 }
 
 /* Стили для тестов */
 .question-container {
     padding: 15px;
-    background: white;
+    background: var(--card-background);
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
     animation: fadeIn 0.5s;
 }
 
@@ -149,11 +147,15 @@ body {
 
 /* Аудио в тестах */
 .audio-container {
-    background: #f5f5f5;
-    padding: 20px;
-    border-radius: 10px;
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 15px;
     margin: 15px 0;
     text-align: center;
+}
+
+[data-theme="dark"] .audio-container {
+    background: #404040;
 }
 
 .question-audio {
@@ -203,7 +205,7 @@ body {
 .results p {
     font-size: 20px;
     margin-bottom: 30px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .results-buttons {
@@ -268,13 +270,18 @@ body {
 }
 
 .custom-audio-player {
-    background: white;
+    background: #ffffff;
     border-radius: 30px;
     padding: 10px 20px;
     display: flex;
     align-items: center;
     gap: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    margin: 10px;
+}
+
+[data-theme="dark"] .custom-audio-player {
+    background: #2d2d2d;
 }
 
 .play-button {
@@ -283,7 +290,7 @@ body {
     border-radius: 50%;
     border: none;
     background: linear-gradient(90deg, #5D8A38 0%, #1D9FFC 100%);
-    color: white;
+    color: var(--text-color);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -291,14 +298,10 @@ body {
     transition: transform 0.2s;
 }
 
-.play-button:hover {
-    transform: scale(1.1);
-}
-
 .progress-bar {
     flex: 1;
     height: 6px;
-    background: #eee;
+    background: var(--shadow-color);
     border-radius: 3px;
     overflow: hidden;
     cursor: pointer;
@@ -330,7 +333,7 @@ body {
 
 .time {
     font-size: 14px;
-    color: #666;
+    color: var(--text-color);
     min-width: 45px;
 }
 
@@ -350,7 +353,7 @@ body {
     height: 4px;
     -webkit-appearance: none;
     appearance: none;
-    background: #eee;
+    background: var(--shadow-color);
     border-radius: 2px;
     cursor: pointer;
 }
@@ -365,13 +368,13 @@ body {
 }
 
 .volume-control i {
-    color: #666;
+    color: var(--text-color);
     font-size: 14px;
 }
 
 .audio-message {
     text-align: center;
-    color: #666;
+    color: var(--text-color);
     font-size: 14px;
     margin-top: 10px;
     /* Анимация появления */
@@ -442,4 +445,153 @@ body {
     margin: 10px auto;
     display: block;
     filter: brightness(0%); /* Делаем изображение чёрным */
+}
+
+/* Добавляем переменные для цветов */
+:root {
+    --background-color: #f9f9f9;
+    --text-color: #000000;
+    --card-background: #ffffff;
+    --header-gradient: linear-gradient(90deg, 
+        rgba(255, 7, 7, 0.2) 0%, 
+        rgba(16, 228, 186, 0.2) 46%, 
+        rgba(222, 238, 0, 0.2) 100%);
+    --shadow-color: rgba(0,0,0,0.1);
+    --footer-background: #ffffff;
+    --ad-banner-background: #cccccc;
+}
+
+[data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-background: #2d2d2d;
+    --header-gradient: linear-gradient(90deg, 
+        rgba(255, 7, 7, 0.4) 0%, 
+        rgba(16, 228, 186, 0.4) 46%, 
+        rgba(222, 238, 0, 0.4) 100%);
+    --shadow-color: rgba(0,0,0,0.3);
+    --footer-background: #2d2d2d;
+    --ad-banner-background: #333333;
+}
+
+/* Стили для страницы настроек */
+.settings-container {
+    padding: 20px;
+}
+
+.settings-list {
+    background: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    padding: 20px;
+    color: var(--text-color);
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+/* Стили для переключателя темы */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background: linear-gradient(90deg, #5D8A38 0%, #1D9FFC 100%);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Обновляем стили для аудио-контейнера */
+.audio-container {
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+[data-theme="dark"] .audio-container {
+    background: #404040;
+}
+
+/* Обновляем стили для кастомного аудиоплеера */
+.custom-audio-player {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    margin: 10px;
+}
+
+[data-theme="dark"] .custom-audio-player {
+    background: #2d2d2d;
+}
+
+/* Добавляем стиль для белого контейнера вокруг плеера */
+.player-wrapper {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.audio-message {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 14px;
+    margin-top: 10px;
 }

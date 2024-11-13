@@ -10,6 +10,9 @@ const QuizCommon = {
     goProfile() {
         window.location.href = '../pages/profile.html';
     },
+    goToSettings() {
+        window.location.href = '../pages/settings.html';
+    },
 
     // Перезапуск теста
     restartQuiz() {
