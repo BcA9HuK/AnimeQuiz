@@ -595,3 +595,21 @@ input:checked + .slider:before {
     font-size: 14px;
     margin-top: 10px;
 }
+.language-select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid var(--shadow-color);
+    background: var(--card-background);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.language-select:focus {
+    outline: none;
+    border-color: #5D8A38;
+}
+
+[data-theme="dark"] .language-select {
+    border-color: var(--shadow-color);
+}
