@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Аниме Викторина</title>
-    <!-- Фавиконы -->
+    <title>Угадай аниме 4</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../media/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../media/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../media/favicon/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
@@ -17,23 +17,8 @@
     </div>
     
     <div class="container">
-        <div class="content">
-            <div class="section" onclick="window.location.href='test1.html'">
-                <img src="../media/test1.jpg" alt="Тест 1">
-                <div class="caption">Угадай аниме по скриншоту 1</div>
-            </div>
-            <div class="section" onclick="window.location.href='test2.html'">
-                <img src="../media/test2.jpg" alt="Тест 2">
-                <div class="caption">Угадай аниме по опенингу 1</div>
-            </div>
-            <div class="section" onclick="window.location.href='test3.html'">
-                <img src="../media/test3.jpg" alt="Тест 3">
-                <div class="caption">Угадай персонажа по силуэту 1</div>
-            </div>
-            <div class="section" onclick="window.location.href='test4.html'">
-                <img src="../media/test4.jpeg" alt="Тест 4">
-                <div class="caption">Угадай аниме в жанре романтика</div>
-            </div>
+        <div class="question-container">
+            <!-- Контент будет добавлен через JavaScript -->
         </div>
     </div>
 
@@ -42,7 +27,7 @@
             <img src="../media/home-icon.png" alt="Главная">
             <div>Главная</div>
         </div>
-        <div class="icon" onclick="window.location.href='games.html'">
+        <div class="icon" onclick="QuizCommon.goToGames()">
             <img src="../media/play-icon.png" alt="Играть">
             <div>Играть</div>
         </div>
@@ -50,13 +35,15 @@
             <img src="../media/rating-icon.png" alt="Рейтинг">
             <div>Рейтинг</div>
         </div>
-        <div class="icon" onclick="window.location.href='profile.html'">
+        <div class="icon" onclick="QuizCommon.goProfile()">
             <img src="../media/profile-icon.png" alt="Профиль">
             <div>Профиль</div>
         </div>
     </div>
     <div class="ad-banner">Реклама (тут она могла быть, но Вы её не заказали)</div>
+
     <script src="../scripts/common.js"></script>
+    <script src="../scripts/tests/test4.js"></script>
     <script src="../scripts/init.js"></script>
     <script src="../scripts/theme.js"></script>
 </body>
