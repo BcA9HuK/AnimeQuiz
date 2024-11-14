@@ -1,115 +1,121 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('suggestForm');
-    const addQuestionBtn = document.getElementById('addQuestion');
     const questionsContainer = document.getElementById('questionsContainer');
+    const addQuestionBtn = document.getElementById('addQuestion');
     
-    // Функция создания нового блока вопроса
-    function createQuestionBlock(questionNumber) {
+    // Инициализируем EmailJS
+    emailjs.init("jupqcstVCz21mrAO7");
+
+    // Функция для добавления обработчика удаления вопроса
+    function addRemoveHandler(removeBtn, questionBlock) {
+        removeBtn.addEventListener('click', () => {
+            if (questionsContainer.children.length > 1) {
+                questionBlock.remove();
+                // Обновляем нумерацию оставшихся вопросов
+                Array.from(questionsContainer.children).forEach((block, index) => {
+                    block.querySelector('h3').textContent = `Вопрос ${index + 1}`;
+                });
+            } else {
+                alert('Необходимо оставить хотя бы один вопрос!');
+            }
+        });
+    }
+
+    // Добавляем обработчики для существующих кнопок удаления
+    document.querySelectorAll('.remove-question').forEach(btn => {
+        addRemoveHandler(btn, btn.closest('.question-block'));
+    });
+
+    // Обработчик добавления нового вопроса
+    addQuestionBtn.addEventListener('click', () => {
+        const questionNumber = questionsContainer.children.length + 1;
         const questionBlock = document.createElement('div');
         questionBlock.className = 'question-block';
-        questionBlock.dataset.question = questionNumber;
         
         questionBlock.innerHTML = `
             <div class="question-header">
                 <h3>Вопрос ${questionNumber}</h3>
                 <button type="button" class="remove-question" title="Удалить вопрос">×</button>
             </div>
-            
             <div class="form-group">
                 <label>Вопрос/Описание</label>
-                <textarea class="question-text" rows="3" required 
-                    placeholder="Опишите ваш вопрос"></textarea>
+                <textarea class="question-text" rows="3" required></textarea>
             </div>
-
             <div class="form-group">
                 <label>Правильный ответ</label>
-                <input type="text" class="correct-answer" required
-                    placeholder="Укажите правильный ответ">
+                <input type="text" class="correct-answer" required>
             </div>
-
             <div class="form-group">
-                <label>Варианты ответов</label>
-                <textarea class="other-answers" rows="3" required
-                    placeholder="Укажите другие варианты ответов (по одному в строке)"></textarea>
+                <label>Варианты ответов (каждый с новой строки)</label>
+                <textarea class="other-answers" rows="3" required></textarea>
             </div>
-
             <div class="form-group">
                 <label>Ссылка на медиафайл (если есть)</label>
-                <input type="url" class="media-link"
-                    placeholder="Ссылка на изображение/аудио">
+                <input type="text" class="media-link">
             </div>
         `;
-        
-        return questionBlock;
-    }
 
-    // Добавление нового вопроса
-    addQuestionBtn.addEventListener('click', () => {
-        const questionNumber = questionsContainer.children.length + 1;
-        const newQuestion = createQuestionBlock(questionNumber);
-        questionsContainer.appendChild(newQuestion);
+        // Добавляем обработчик для новой кнопки удаления
+        const removeBtn = questionBlock.querySelector('.remove-question');
+        addRemoveHandler(removeBtn, questionBlock);
+
+        questionsContainer.appendChild(questionBlock);
     });
 
-    // Удаление вопроса
-    questionsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-question')) {
-            const questionBlock = e.target.closest('.question-block');
-            if (questionsContainer.children.length > 1) {
-                questionBlock.remove();
-                // Обновляем нумерацию
-                Array.from(questionsContainer.children).forEach((block, index) => {
-                    block.dataset.question = index + 1;
-                    block.querySelector('h3').textContent = `Вопрос ${index + 1}`;
-                });
-            } else {
-                alert('Должен остаться хотя бы один вопрос!');
-            }
-        }
-    });
-
-    // Обработка отправки формы
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Собираем данные формы
-        const formData = {
+        // Показываем индикатор загрузки
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправка...';
+        
+        // Форматируем вопросы
+        const questions = Array.from(questionsContainer.children).map((block, index) => {
+            return `Вопрос ${index + 1}:
+Текст: ${block.querySelector('.question-text').value}
+Правильный ответ: ${block.querySelector('.correct-answer').value}
+Варианты ответов: ${block.querySelector('.other-answers').value.split('\n').filter(a => a.trim()).join(', ')}
+Медиа: ${block.querySelector('.media-link').value || 'нет'}`;
+        }).join('\n\n');
+
+        // Формируем данные для отправки
+        const templateParams = {
             testType: document.getElementById('testType').value,
             testTitle: document.getElementById('testTitle').value,
             authorType: document.querySelector('input[name="authorType"]:checked').value,
-            // Если пользователь выбрал указать имя, берем его из заголовка
-            authorName: document.querySelector('input[name="authorType"]:checked').value === 'withName' 
-                ? document.querySelector('.header .title').textContent 
-                : null,
-            questions: Array.from(questionsContainer.children).map(questionBlock => ({
-                questionText: questionBlock.querySelector('.question-text').value,
-                correctAnswer: questionBlock.querySelector('.correct-answer').value,
-                otherAnswers: questionBlock.querySelector('.other-answers').value
-                    .split('\n')
-                    .filter(answer => answer.trim()),
-                mediaLink: questionBlock.querySelector('.media-link').value
-            })),
-            comment: document.getElementById('comment').value
+            questions: questions,
+            comment: document.getElementById('comment').value || 'нет'
         };
 
         try {
-            // Здесь будет отправка данных на сервер
-            console.log('Отправка данных:', formData);
+            await emailjs.send(
+                'service_6qeqvmw',    // Service ID
+                'template_owk0bkr',
+                templateParams
+            );
             
-            // Временно просто показываем уведомление
-            alert('Спасибо за ваше предложение! Мы рассмотрим его в ближайшее время.');
-            form.reset();
-            
-            // Оставляем только один вопрос
-            while (questionsContainer.children.length > 1) {
-                questionsContainer.lastChild.remove();
-            }
-            
-            // Возвращаем радио-кнопку в состояние "Анонимно"
-            document.querySelector('input[name="authorType"][value="anonymous"]').checked = true;
+            // Показываем уведомление после успешной отправки
+            setTimeout(() => {
+                alert('Спасибо за ваше предложение! Мы рассмотрим его в ближайшее время.');
+                
+                // Сбрасываем форму
+                form.reset();
+                
+                // Оставляем только один вопрос
+                while (questionsContainer.children.length > 1) {
+                    questionsContainer.lastChild.remove();
+                }
+            }, 1000);
             
         } catch (error) {
             console.error('Ошибка при отправке:', error);
             alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
+        } finally {
+            // Возвращаем исходный текст кнопки после завершения отправки
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
         }
     });
 });
