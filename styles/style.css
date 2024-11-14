@@ -151,9 +151,8 @@ body {
 /* Стили для тестов */
 .question-container {
     padding: 15px;
-    background: var(--card-background);
+    background: transparent;
     border-radius: 10px;
-    box-shadow: 0 2px 8px var(--shadow-color);
     animation: fadeIn 0.5s;
 }
 
@@ -620,4 +619,427 @@ input:checked + .slider:before {
 
 [data-theme="dark"] .language-select {
     border-color: var(--shadow-color);
+}
+
+/* Стили для главной страницы */
+.home-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Карточка новостей */
+.news-card {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.news-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.news-preview {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--shadow-color);
+}
+
+.news-date {
+    color: #666;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.news-text {
+    margin: 10px 0;
+}
+
+.read-more {
+    color: #2196F3;
+    font-size: 0.9em;
+}
+
+/* Секции с тестами */
+.tests-section {
+    margin: 10px 0;
+}
+
+.tests-section h2 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.tests-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* Мини-карточки тестов */
+.test-mini-card {
+    background: var(--card-background);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.test-mini-card:hover {
+    transform: translateY(-2px);
+}
+
+.test-mini-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.test-mini-info {
+    padding: 10px;
+}
+
+.test-mini-info p {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+/* Карточки будущих тестов */
+.coming-soon {
+    opacity: 0.7;
+    position: relative;
+}
+
+.coming-soon::after {
+    content: "Скоро";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+/* Карточка предложения тестов */
+.suggest-card {
+    background: linear-gradient(45deg, rgba(107,107,255,0.1), rgba(107,255,107,0.1));
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-align: center;
+}
+
+.suggest-card:hover {
+    transform: translateY(-2px);
+}
+
+.suggest-card p {
+    margin: 10px 0 0;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 380px) {
+    .tests-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Стили для страницы новостей */
+.news-title {
+    text-align: center;
+    color: var(--text-color);
+    margin: 20px 0;
+    font-size: 1.8em;
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.news-item {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.news-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.news-tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+.news-tag.new {
+    background: #4CAF50;
+    color: white;
+}
+
+.news-item h2 {
+    color: var(--text-color);
+    margin: 10px 0;
+    font-size: 1.3em;
+}
+
+.news-item p {
+    color: var(--text-color);
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+.news-image {
+    margin: 15px 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.news-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.news-link {
+    display: inline-block;
+    color: #2196F3;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: transform 0.2s;
+}
+
+.news-link:hover {
+    transform: translateX(5px);
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 480px) {
+    .news-image img {
+        height: 150px;
+    }
+    
+    .news-item h2 {
+        font-size: 1.1em;
+    }
+}
+
+/* Стили для формы предложений */
+.suggest-form-container {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.suggest-form-container h1 {
+    color: var(--text-color);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.suggest-description {
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.suggest-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.suggest-form input,
+.suggest-form select,
+.suggest-form textarea {
+    padding: 10px;
+    border: 1px solid var(--shadow-color);
+    border-radius: 8px;
+    background: var(--card-background);
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.suggest-form input:focus,
+.suggest-form select:focus,
+.suggest-form textarea:focus {
+    outline: none;
+    border-color: #5D8A38;
+}
+
+.submit-button {
+    background: linear-gradient(90deg, #5D8A38 0%, #1D9FFC 100%);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* Стили для темной темы */
+[data-theme="dark"] .suggest-form input,
+[data-theme="dark"] .suggest-form select,
+[data-theme="dark"] .suggest-form textarea {
+    background: #363636;
+    border-color: #444;
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 480px) {
+    .suggest-form-container {
+        padding: 15px;
+    }
+    
+    .suggest-form-container h1 {
+        font-size: 1.3em;
+    }
+}
+
+/* Стили для блоков вопросов */
+.question-block {
+    background: var(--card-background);
+    border: 1px solid var(--shadow-color);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    position: relative;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.question-header h3 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+
+.remove-question {
+    background: none;
+    border: none;
+    color: #ff4444;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.add-question-button {
+    background: none;
+    border: 2px dashed var(--shadow-color);
+    color: var(--text-color);
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.2s;
+}
+
+.add-question-button:hover {
+    background: var(--shadow-color);
+}
+
+/* Анимация для новых вопросов */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.question-block {
+    animation: slideDown 0.3s ease;
+}
+
+/* Стили для выбора авторства */
+.author-options {
+    margin: 10px 0;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.radio-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #5D8A38;
+}
+
+.radio-label span {
+    font-size: 0.95em;
+}
+
+/* Стили для темной темы */
+[data-theme="dark"] .radio-label input[type="radio"] {
+    border-color: #444;
 }

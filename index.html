@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Аниме Викторина</title>
-    <!-- Фавиконы -->
     <link rel="icon" type="image/png" sizes="32x32" href="./media/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./media/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./media/favicon/apple-touch-icon.png">
     <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/news.js"></script>
 </head>
 <body>
     <div class="header">
@@ -17,22 +17,57 @@
     </div>
     
     <div class="container">
-        <div class="content">
-            <div class="section" onclick="window.location.href='pages/test1.html'">
-                <img src="media/test1.jpg" alt="Тест 1">
-                <div class="caption">Угадай аниме по скриншоту 1</div>
+        <div class="home-content">
+            <!-- Блок новостей -->
+            <div class="news-card" onclick="window.location.href='pages/news.html'">
+                <h2>Новости</h2>
+                <div class="news-preview">
+                    <!-- Сюда будет добавляться контент через JavaScript -->
+                </div>
             </div>
-            <div class="section" onclick="window.location.href='pages/test2.html'">
-                <img src="media/test2.jpg" alt="Тест 2">
-                <div class="caption">Угадай аниме по опенингу 1</div>
+            
+            <!-- Блок последних тестов -->
+            <div class="tests-section">
+                <h2>Последние тесты</h2>
+                <div class="tests-grid">
+                    <div class="test-mini-card" onclick="window.location.href='pages/test2.html'">
+                        <img src="media/test2.jpg" alt="Тест по опенингам">
+                        <div class="test-mini-info">
+                            <p>Угадай аниме по опенингу 1</p>
+                        </div>
+                    </div>
+                    <div class="test-mini-card" onclick="window.location.href='pages/test3.html'">
+                        <img src="media/test3.jpg" alt="Тест по силуэтам">
+                        <div class="test-mini-info">
+                            <p>Угадай персонажа по силуэту 1</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="section" onclick="window.location.href='pages/test3.html'">
-                <img src="media/test3.jpg" alt="Тест 3">
-                <div class="caption">Угадай персонажа по силуэту 1</div>
+            
+            <!-- Блок будущих тестов -->
+            <div class="tests-section">
+                <h2>Будущие тесты</h2>
+                <div class="tests-grid">
+                    <div class="test-mini-card coming-soon">
+                        <img src="media/test4.jpeg" alt="Будущий тест">
+                        <div class="test-mini-info">
+                            <p>Тест 4 (Скоро)</p>
+                        </div>
+                    </div>
+                    <div class="test-mini-card coming-soon">
+                        <img src="media/test5.jpg" alt="Будущий тест">
+                        <div class="test-mini-info">
+                            <p>Тест 5 (Скоро)</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="section" onclick="window.location.href='#'">
-                <img src="media/test4.jpeg" alt="Тест 4">
-                <div class="caption">Тест 4 (Скоро)</div>
+            
+            <!-- Блок предложить тест -->
+            <div class="suggest-card" onclick="window.location.href='pages/suggest.html'">
+                <h2>Предложить свои вопросы/тесты</h2>
+                <p>Помогите сделать викторину лучше!</p>
             </div>
         </div>
     </div>
@@ -42,7 +77,7 @@
             <img src="media/home-icon.png" alt="Главная">
             <div>Главная</div>
         </div>
-        <div class="icon" onclick="window.location.href='index.html'">
+        <div class="icon" onclick="window.location.href='pages/games.html'">
             <img src="media/play-icon.png" alt="Играть">
             <div>Играть</div>
         </div>
@@ -55,7 +90,15 @@
             <div>Профиль</div>
         </div>
     </div>
-    <div class="ad-banner">Реклама (тут она могла быть, но Вы её не заказали)</div>
+    <div class="ad-banner">Реклама</div>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/init.js"></script>
     <script src="scripts/theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            NewsManager.renderLatestNewsPreview();
+            NewsManager.renderAllNews('./');
+        });
+    </script>
 </body>
 </html>

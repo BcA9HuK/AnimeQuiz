@@ -13,6 +13,9 @@ const QuizCommon = {
     goToSettings() {
         window.location.href = '../pages/settings.html';
     },
+    goToGames() {
+        window.location.href = '../pages/games.html';
+    },
 
     // Перезапуск теста
     restartQuiz() {
