@@ -108,32 +108,54 @@ const currentTest = {
             options: ["Боксо", "Рицу Хаясака", "Симон", "9-Альфа"],
             correctAnswer: "Боксо"
         }
-    ],
-
-    showQuestion() {
-        const question = this.questions[QuizCommon.currentQuestion];
-        const container = document.querySelector('.container');
-        
-        const shuffledOptions = QuizCommon.shuffleArray([...question.options]);
-        
-        const questionHTML = `
-            <div class="question-container">
-                <h1 class="quiz-title">${question.question}</h1>
-                <img src="${question.image}" alt="Силуэт персонажа" class="silhouette-image">
-                <div class="question-counter">${QuizCommon.currentQuestion + 1}/${this.questions.length}</div>
-                <div class="options-container">
-                    ${shuffledOptions.map(option => `
-                        <button class="option-button" onclick="QuizCommon.checkAnswer('${option}')">${option}</button>
-                    `).join('')}
-                </div>
-            </div>
-        `;
-        
-        container.innerHTML = questionHTML;
-    }
+    ]
 };
 
-// Функция для показа текущего вопроса (вызывается из common.js)
+// Добавляем индикатор загрузки для вопросов
+function showLoadingIndicator() {
+    const container = document.querySelector('.question-container');
+    container.innerHTML = `
+        <div class="question-loading">
+            <div class="preloader-spinner"></div>
+            <div>Загрузка вопроса...</div>
+        </div>
+    `;
+}
+
+// Асинхронная функция показа вопроса
+async function showQuestionAsync() {
+    showLoadingIndicator();
+
+    // При первом вопросе предзагружаем первые 3 изображения
+    if (QuizCommon.currentQuestion === 0) {
+        await TestPreloader.preloadInitialImages(currentTest);
+        // Начинаем загрузку оставшихся изображений в фоновом режиме
+        TestPreloader.preloadRemainingImages(currentTest);
+    }
+
+    const question = currentTest.questions[QuizCommon.currentQuestion];
+    
+    // Ждем загрузки изображения текущего вопроса
+    if (question.image) {
+        await TestPreloader.preloadImage(question.image);
+    }
+
+    const container = document.querySelector('.question-container');
+    const shuffledOptions = QuizCommon.shuffleArray([...question.options]);
+    
+    container.innerHTML = `
+        <h1 class="quiz-title">${question.question}</h1>
+        <img src="${question.image}" alt="Силуэт персонажа" class="silhouette-image">
+        <div class="question-counter">${QuizCommon.currentQuestion + 1}/${currentTest.questions.length}</div>
+        <div class="options-container">
+            ${shuffledOptions.map(option => `
+                <button class="option-button" onclick="QuizCommon.checkAnswer('${option}')">${option}</button>
+            `).join('')}
+        </div>
+    `;
+}
+
+// Функция-обертка для вызова из init.js
 function showQuestion() {
-    currentTest.showQuestion();
+    showQuestionAsync();
 }

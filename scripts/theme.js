@@ -35,6 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ThemeManager.init();
 });
 
-// Применяем тему сразу при загрузке скрипта
-const savedTheme = localStorage.getItem('theme') || 'light';
-document.documentElement.setAttribute('data-theme', savedTheme);
+// Только переключение темы, начальная проверка уже в HTML
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}

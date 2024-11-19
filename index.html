@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Аниме Викторина</title>
+    <script>
+        // Применяем тему сразу при загрузке страницы
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
     <link rel="icon" type="image/png" sizes="32x32" href="./media/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./media/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./media/favicon/apple-touch-icon.png">
@@ -72,6 +77,7 @@
         </div>
     </div>
 
+    <div class="ad-banner">Реклама</div>
     <div class="footer">
         <div class="icon" onclick="window.location.href='index.html'">
             <img src="media/home-icon.png" alt="Главная">
@@ -90,7 +96,7 @@
             <div>Профиль</div>
         </div>
     </div>
-    <div class="ad-banner">Реклама</div>
+
     <script src="scripts/common.js"></script>
     <script src="scripts/init.js"></script>
     <script src="scripts/theme.js"></script>

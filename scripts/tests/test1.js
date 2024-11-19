@@ -1,7 +1,6 @@
 const currentTest = {
     id: 'test1',
     title: 'Угадай аниме по скриншоту',
-    
     questions: [
         {
             id: 1,
@@ -73,52 +72,51 @@ const currentTest = {
             options: ["Магическая битва", "Волейбол!!", "Блич", "Путь аса"],
             correctAnswer: "Магическая битва"
         }
-    ],
-
-    // Метод для отображения вопроса
-    showQuestion() {
-        const question = this.questions[QuizCommon.currentQuestion];
-        const container = document.querySelector('.container');
-        
-        // Создаем копию массива опций и перемешиваем её
-        const shuffledOptions = QuizCommon.shuffleArray([...question.options]);
-        
-        const questionHTML = `
-            <div class="question-container">
-                <h1 class="quiz-title">${question.question}</h1>
-                <img class="question-image" src="${question.image}" alt="Аниме скриншот">
-                <div class="question-counter">${QuizCommon.currentQuestion + 1}/${this.questions.length}</div>
-                <div class="options-container">
-                    ${shuffledOptions.map(option => `
-                        <button class="option-button" onclick="QuizCommon.checkAnswer('${option}')">${option}</button>
-                    `).join('')}
-                </div>
-            </div>
-        `;
-        
-        container.innerHTML = questionHTML;
-
-        // Обработка ошибок загрузки изображения
-        const img = container.querySelector('.question-image');
-        img.onerror = function() {
-            this.src = '../../media/error-image.jpg'; // Путь к изображению-заглушке
-            console.error(`Ошибка загрузки изображения: ${question.image}`);
-        };
-    },
-
-    // Метод для предзагрузки изображений (опционально)
-    preloadImages() {
-        this.questions.forEach(question => {
-            const img = new Image();
-            img.src = question.image;
-        });
-    }
+    ]
 };
 
-// Функция для показа текущего вопроса (вызывается из common.js)
-function showQuestion() {
-    currentTest.showQuestion();
+// Добавляем индикатор загрузки для вопросов
+function showLoadingIndicator() {
+    const container = document.querySelector('.question-container');
+    container.innerHTML = `
+        <div class="question-loading">
+            <div class="preloader-spinner"></div>
+            <div>Загрузка вопроса...</div>
+        </div>
+    `;
 }
 
-// Предзагрузка изображений при загрузке скрипта (опционально)
-// currentTest.preloadImages();
+// Асинхронная функция показа вопроса
+async function showQuestionAsync() {
+    showLoadingIndicator();
+
+    if (QuizCommon.currentQuestion === 0) {
+        await TestPreloader.preloadInitialImages(currentTest);
+        TestPreloader.preloadRemainingImages(currentTest);
+    }
+
+    const question = currentTest.questions[QuizCommon.currentQuestion];
+    
+    if (question.image) {
+        await TestPreloader.preloadImage(question.image);
+    }
+
+    const container = document.querySelector('.question-container');
+    const shuffledOptions = QuizCommon.shuffleArray([...question.options]);
+    
+    container.innerHTML = `
+        <h1 class="quiz-title">${question.question}</h1>
+        <img src="${question.image}" alt="Аниме скриншот" class="question-image">
+        <div class="question-counter">${QuizCommon.currentQuestion + 1}/${currentTest.questions.length}</div>
+        <div class="options-container">
+            ${shuffledOptions.map(option => `
+                <button class="option-button" onclick="QuizCommon.checkAnswer('${option}')">${option}</button>
+            `).join('')}
+        </div>
+    `;
+}
+
+// Функция-обертка для вызова из init.js
+function showQuestion() {
+    showQuestionAsync();
+}
