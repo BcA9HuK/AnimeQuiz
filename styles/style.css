@@ -487,6 +487,14 @@ body {
     display: block;
     filter: brightness(0%); /* Делаем изображение чёрным */
 }
+.poster-image {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin: 10px auto;
+    display: block;
+}
 
 /* Стили для страницы настроек */
 .settings-container {

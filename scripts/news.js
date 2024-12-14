@@ -1,13 +1,22 @@
 const newsData = {
     news: [
         {
+            id: 5,
+            date: "14.12.2024",
+            title: "Добавлен новый тест \"Угадай аниме по постеру\"!",
+            text: "Проверьте свои знания постеров аниме в нашем новом захватывающем тесте. Сможете ли вы узнать аниме по постерам?",
+            image: "media/test5.gif",
+            link: "pages/test5.html",
+            isNew: true
+        },
+        {
             id: 4,
             date: "14.11.2024",
             title: "Добавлен новый тест \"Угадай аниме в жанре романтика\"!",
             text: "Проверьте свои знания романтических аниме в нашем новом захватывающем тесте. Сможете ли вы узнать любимые ромкомы по скиншотам?",
             image: "media/test4.jpeg",
             link: "pages/test4.html",
-            isNew: true
+            isNew: false
         },
         {
             id: 3,
@@ -32,7 +41,7 @@ const newsData = {
             date: "24.12.2023",
             title: "Будущий тест",
             text: "Будущий тест",
-            image: "media/test5.jpg",
+            image: "media/test5.gif",
             link: "pages/test5.html",
             isNew: false
         }

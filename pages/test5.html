@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Угадай аниме по опенингу - Аниме Викторина</title>
+    <title>Угадай аниме по постеру - Аниме Викторина</title>
     <script>
-        // Применяем тему сразу при загрузке страницы
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
     <link rel="icon" type="image/png" sizes="32x32" href="../media/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../media/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../media/favicon/apple-touch-icon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
@@ -27,7 +25,7 @@
         </div>
     </div>
 
-    <!-- <div class="ad-banner">Реклама (слышь, нужна реклама?)</div> -->
+    <!--<div class="ad-banner">Реклама (слышь, нужна реклама?)</div> -->
     <div class="footer">
         <div class="icon" onclick="QuizCommon.goToHome()">
             <img src="../media/home-icon.png" alt="Главная">
@@ -48,7 +46,8 @@
     </div>
 
     <script src="../scripts/common.js"></script>
-    <script src="../scripts/tests/test2.js"></script>
+    <script src="../scripts/testPreloader.js"></script>
+    <script src="../scripts/tests/test5.js"></script>
     <script src="../scripts/init.js"></script>
     <script src="../scripts/theme.js"></script>
 </body>
