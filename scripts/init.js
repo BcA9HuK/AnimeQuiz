@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Запуск теста
+    // Инициализация UserManager должна быть первой
+    UserManager.init();
+
+    // Запуск теста (если мы на странице теста)
     if (typeof showQuestion === 'function') {
         showQuestion();
     }

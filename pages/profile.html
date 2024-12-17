@@ -16,49 +16,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="header">
+  <div class="header">
         <div class="title">Ваше имя</div>
-        <div class="points">🏆 Ваши очки</div>
-    </div>
-    
-    <div class="container profile-container">
-        <div class="profile-header">
-            <img src="../media/profile-avatar.png" alt="Аватар" class="profile-avatar">
-            <div class="profile-info">
-                <h1>Юр нейм</h1>
-                <p>Какая-то надпись</p>
-                <p>Какая-то надпись 2</p>
-            </div>
-            <div class="settings-icon" onclick="window.location.href='settings.html'">
-                <i class="fas fa-cog"></i>
-            </div>
-        </div>
-        
-        <div class="social-links">
-            <i class="fab fa-telegram"></i>
-            <i class="fab fa-vk"></i>
-            <i class="fab fa-discord"></i>
-            <i class="fab fa-tiktok"></i>
-        </div>
-        
-        <div class="stats">
-            <div>Начато тестов<br>5/ꝏ</div>
-            <div>Поинты<br>180</div>
-            <div>Рейтинг<br>1</div>
-        </div>
-        
-        <div class="achievements">
-            <h2>Достижения: 5</h2>
-            <div class="achievement-icons">
-                <img src="../media/achievements/achievement1.png" alt="Достижение 1">
-                <img src="../media/achievements/achievement2.png" alt="Достижение 2">
-                <img src="../media/achievements/achievement3.png" alt="Достижение 3">
-                <img src="../media/achievements/achievement4.png" alt="Достижение 4">
-            </div>
-            <a href="#">Посмотреть все</a>
+        <div class="settings-icon" onclick="window.location.href='settings.html'">
+            <i class="fas fa-cog"></i>
         </div>
     </div>
-    <div> <H1 style="text-align: center; color: rgb(255, 0, 0);">В разработке!</H1></div>
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-header">
+                <div class="profile-main">
+                    <div class="avatar">
+                        <img src="../media/default-avatar.png" alt="Аватар">
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="username">Гость</h2>
+                        <div class="user-status">Статус не установлен</div>
+                        <div class="points">🏆 0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Статистика -->
+            <div class="statistics-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">-</div>
+                        <div class="stat-label">Место в рейтинге</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value completed-tests">0</div>
+                        <div class="stat-label">Пройдено тестов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value achievements-count">0</div>
+                        <div class="stat-label">Получено достижений</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Достижения -->
+            <div class="achievements-section">
+                <h2>Достижения</h2>
+                <div class="achievements-container">
+                    <!-- Заполняется через JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- <div class="ad-banner">Реклама</div> -->
     <div class="footer">
@@ -82,6 +87,9 @@
 
     <script src="../scripts/common.js"></script>
     <script src="../scripts/init.js"></script>
+    <script src="../scripts/achievementsManager.js"></script>
+    <script src="../scripts/userManager.js"></script>
     <script src="../scripts/theme.js"></script>
+    <script src="../scripts/profileManager.js"></script>
 </body>
 </html>

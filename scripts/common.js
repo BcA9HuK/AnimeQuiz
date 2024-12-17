@@ -48,11 +48,28 @@ const QuizCommon = {
     // Показ результатов
     showResults() {
         const container = document.querySelector('.container');
+        const result = UserManager.processTestResult(
+            currentTest.id,
+            this.correctAnswers,
+            currentTest.questions.length
+        );
+
+        // Проверяем достижения
+        AchievementsManager.checkAchievements(
+            currentTest.id,
+            this.correctAnswers,
+            currentTest.questions.length
+        );
+
         container.innerHTML = `
             <div class="question-container">
                 <h1 class="quiz-title">Тест завершен!</h1>
                 <div class="results">
-                    <p>Правильных ответов: ${this.correctAnswers} из ${currentTest.questions.length}</p>
+                    <p>Правильных ответов: ${result.totalScore} из ${result.totalQuestions}</p>
+                    ${result.isNewBest 
+                        ? `<p>Новый рекорд! Получено очков: +${result.earnedPoints}</p>`
+                        : `<p>Ваш лучший результат: ${result.previousBest} из ${result.totalQuestions}</p>`
+                    }
                     <div class="results-buttons">
                         <button class="option-button" onclick="QuizCommon.restartQuiz()">Пройти заново</button>
                         <button class="option-button" onclick="QuizCommon.goToHome()">На главную</button>
